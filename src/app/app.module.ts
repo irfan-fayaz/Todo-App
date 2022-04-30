@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './Components/todo-list/todo-list.component';
 import { FormsModule } from '@angular/forms';
+import { TodoService } from './Components/todo.service';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -14,9 +16,10 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

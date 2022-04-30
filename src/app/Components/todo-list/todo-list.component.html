@@ -1,27 +1,62 @@
 <h1>Todo</h1>
 <div class="container">
-    <header>
-        <input type="text" class="input1" placeholder="What needs to be done?" autofocus [(ngModel)]="inputData" (keyup.enter)="addData()">
-       <hr> 
-    </header>
+  <header>
+    <input
+      type="text"
+      class="input1"
+      placeholder="What needs to be done?"
+      autofocus
+      [(ngModel)]="inputData"
+      (keyup.enter)="addData()"
+    />
+    <hr />
+  </header>
 
-    <section>
-        <ul *ngFor="let todo of filterTodo()">
-            <li>
-                <input type="checkbox" class="checkbox" [(ngModel)]="todo.completed">
-                <label (dblclick)="editTodo(todo)" *ngIf="!todo.Editing">{{todo.title}}</label> 
-                <input type="text" class="input2" *ngIf="todo.Editing" [(ngModel)]="todo.title" autofocus (blur)="completeEdit(todo)" (keyup.enter)="completeEdit(todo)" >
-                <button type="button" class="btnDelete" (click)="deleteItem(todo.id)">❌</button>     
-            </li>                
-            <hr>
-        </ul>
-    </section>
-    <footer>
-        <span>&nbsp;&nbsp;{{remaining()}} items left</span>
-            <button type="button" class="all" [ngClass]="{active:todoFilter==='all'}" (click)="todoFilter='all'">All</button>
-            <button type="button" class="all" [ngClass]="{active:todoFilter==='active'}" (click)="todoFilter='active'">Active</button>
-            <button type="button" class="all" [ngClass]="{active:todoFilter==='completed'}" (click)="todoFilter='completed'">Completed</button>
-        <button type="button" class="clear" (click)="clearCompleted()">Clear Completed</button>
-    </footer>
+  <section>
+    <ul *ngFor="let todo of filterTodo()">
+      <li>
+        <input type="checkbox" class="checkbox" [(ngModel)]="todo.completed" />
+        <label (dblclick)="editTodo(todo)" *ngIf="!todo.Editing">{{
+          todo.title
+        }}</label>
+        <input
+          type="text"
+          class="input2"
+          *ngIf="todo.Editing"
+          [(ngModel)]="todo.title"
+          autofocus
+          (blur)="completeEdit(todo)"
+          (keyup.enter)="completeEdit(todo)"
+        />
+        <button type="button" class="btnDelete" (click)="deleteItem(todo.id)">
+          ❌
+        </button>
+      </li>
+      <hr />
+    </ul>
+  </section>
+  <footer>
+    <span>&nbsp;&nbsp;{{ remaining() }} items left</span>
+    <button type="button" class="all" [ngClass]="{ active: filters === 'all' }">
+      <a [routerLink]="['/all']">All</a>
+    </button>
+    <button
+      type="button"
+      class="all"
+      [ngClass]="{ active: filters === 'active' }"
+    >
+      <a [routerLink]="['/active']">Active</a>
+    </button>
+    <button
+      type="button"
+      class="all"
+      [ngClass]="{ active: filters === 'completed' }"
+    >
+      <a [routerLink]="['/completed']">Completed</a>
+    </button>
 
+    <button type="button" class="clear" (click)="clearCompleted()">
+      Clear Completed
+    </button>
+  </footer>
 </div>
